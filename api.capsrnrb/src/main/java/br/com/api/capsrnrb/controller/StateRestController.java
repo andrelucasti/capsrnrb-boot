@@ -19,17 +19,16 @@ public class StateRestController {
 	
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value="/estados")
+	@RequestMapping(method = RequestMethod.GET, value="/states")
 	public @ResponseBody Iterable<State> listarEstados(){
 		
 		return serviceOther.findAllState();
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value="/cidades/{idEstado}")
-	public Iterable<City> listarCidades(@PathVariable("idEstado") Integer pIdEstado){
-			
-			State state = serviceOther.findState(pIdEstado);
+	@RequestMapping(method = RequestMethod.GET, value="/city/{idState}")
+	public @ResponseBody Iterable<City> listarCidades(@PathVariable("idState") Integer pIdState){
+			State state = serviceOther.findState(pIdState);
 			Iterable<City> citys = serviceOther.findeAllCity(state);
 			
 		return citys;

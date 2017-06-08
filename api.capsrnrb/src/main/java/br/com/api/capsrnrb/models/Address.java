@@ -17,11 +17,11 @@ public class Address
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id;
-   private String rua;
-   private String cep;
-   private Integer numero;
-   private String complemento;
-   private String bairro;
+   private String street;
+   private String zipCode;
+   private Integer number;
+   private String complement;
+   private String district;
    
    
    @OneToMany(mappedBy = "address")
@@ -40,44 +40,44 @@ public class Address
       this.id = id;
    }
 
-   public String getRua()
+   public String getstreet()
    {
-      return this.rua;
+      return this.street;
    }
 
-   public void setRua(String rua)
+   public void setstreet(String street)
    {
-      this.rua = rua;
+      this.street = street;
    }
 
-   public String getCep()
+   public String getzipCode()
    {
-      return this.cep;
+      return this.zipCode;
    }
 
-   public void setCep(String cep)
+   public void setzipCode(String zipCode)
    {
-      this.cep = cep;
+      this.zipCode = zipCode;
    }
 
-   public Integer getNumero()
+   public Integer getnumber()
    {
-      return this.numero;
+      return this.number;
    }
 
-   public void setNumero(Integer numero)
+   public void setnumber(Integer number)
    {
-      this.numero = numero;
+      this.number = number;
    }
 
-   public String getComplemento()
+   public String getcomplement()
    {
-      return this.complemento;
+      return this.complement;
    }
 
-   public void setComplemento(String complemento)
+   public void setcomplement(String complement)
    {
-      this.complemento = complemento;
+      this.complement = complement;
    }
 
    public City getCity()
@@ -90,11 +90,11 @@ public class Address
       this.city = city;
    }
 
-public String getBairro() {
-	return bairro;
+public String getdistrict() {
+	return district;
 }
 
-public void setBairro(String bairro) {
-	this.bairro = bairro;
+public void setdistrict(String district) {
+	this.district = district;
 }
 }

@@ -26,28 +26,28 @@ public class User
 	private Long id;
 	
 	@Column
-	private String nome;
+	private String name;
 	@Column
-	private String nomeMae;
+	private String motherName;
 	@Column
 	private Integer nuProntuario;
 	@Column
 	private String nuCartSus;
 	@Column
-	private String localEmArquivo;
+	private String fileLocal;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Address address;
 	@DateTimeFormat
-	private Calendar dataNascimento;
+	private Calendar dateOfBirth;
 	
 	@ManyToMany
 	@JoinTable(name = "user_screeningdate", joinColumns = {@JoinColumn(name="user_id")}, inverseJoinColumns = {@JoinColumn(name="screeningdate_id")})
 	private List<ScreeningDate> screeningDate = new ArrayList<>();
 	
 	@Column
-	private String tipoDroga;
+	private String drugType;
 	@Column
-	private String nuTelefone;
+	private String phone;
 	
 		
 	public Long getId(){
@@ -58,20 +58,20 @@ public class User
 		this.id = id;
 	}
 
-	public String getNome(){
-		return this.nome;
+	public String getName(){
+		return this.name;
 	}
 
-	public void setNome(String nome){
-		this.nome = nome;
+	public void setName(String name){
+		this.name = name;
 	}
 
-	public String getNomeMae(){
-		return this.nomeMae;
+	public String getMotherName(){
+		return this.motherName;
 	}
 
-	public void setNomeMae(String nomeMae){
-		this.nomeMae = nomeMae;
+	public void setMotherName(String motherName){
+		this.motherName = motherName;
 	}
 
 	public Integer getNuProntuario(){
@@ -90,8 +90,8 @@ public class User
 		this.nuCartSus = nuCartSus;
 	}
 
-	public Calendar getDataNascimento(){
-		return this.dataNascimento;
+	public Calendar getDateOfBirth(){
+		return this.dateOfBirth;
 	}
 
 	public List<ScreeningDate> getScreeningDate() {
@@ -103,42 +103,40 @@ public class User
 	}
 
 
-	public void setDataNascimento(Calendar dataNascimento){
-		this.dataNascimento = dataNascimento;
+	public void setdateOfBirth(Calendar dateOfBirth){
+		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Address getaddress()
-	{
+	public Address getAddress(){
 		return this.address;
 	}
 
-	public void setaddress(Address address)
-	{
+	public void setAddress(Address address){
 		this.address = address;
 	}
 
-	public String getLocalEmArquivo() {
-		return localEmArquivo;
+	public String getFileLocal() {
+		return fileLocal;
 	}
 
-	public void setLocalEmArquivo(String localEmArquivo) {
-		this.localEmArquivo = localEmArquivo;
+	public void setFileLocal(String fileLocal) {
+		this.fileLocal = fileLocal;
 	}
 
-	public String getTipoDroga() {
-		return tipoDroga;
+	public String getDrugType() {
+		return drugType;
 	}
 
-	public void setTipoDroga(String tipoDroga) {
-		this.tipoDroga = tipoDroga;
+	public void setDrugType(String drugType) {
+		this.drugType = drugType;
 	}
 
-	public String getNuTelefone() {
-		return nuTelefone;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setNuTelefone(String nuTelefone) {
-		this.nuTelefone = nuTelefone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 		

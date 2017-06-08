@@ -19,8 +19,8 @@ public class City
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id;
    
-   @Column(name="nome")
-   private String nomeCidade;
+   @Column
+   private String description;
    
    @OneToMany(mappedBy = "city")
    private List<Address> address = new ArrayList<>();
@@ -40,12 +40,12 @@ public class City
 
    public String getNome()
    {
-      return this.nomeCidade;
+      return this.description;
    }
 
-   public void setNome(String nomeCidade)
+   public void setNome(String description)
    {
-      this.nomeCidade = nomeCidade;
+      this.description = description;
    }
 
    public State getstate()

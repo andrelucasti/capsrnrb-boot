@@ -17,7 +17,7 @@ public class ScreeningDate {
 	private Integer id;
 	
 	@DateTimeFormat
-	private Calendar data;
+	private Calendar date;
 
 	
 	public Integer getId() {
@@ -28,12 +28,12 @@ public class ScreeningDate {
 		this.id = id;
 	}
 
-	public Calendar getDataTriagem() {
-		return data;
+	public Calendar getdateTriagem() {
+		return date;
 	}
 
-	public void setDataTriagem(Calendar data) {
-		this.data = data;
+	public void setdateTriagem(Calendar date) {
+		this.date = date;
 	}
 
 	

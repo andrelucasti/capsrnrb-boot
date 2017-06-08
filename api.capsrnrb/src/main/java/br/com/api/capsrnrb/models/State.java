@@ -3,7 +3,6 @@ package br.com.api.capsrnrb.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,31 +17,27 @@ public class State
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="nome")
-	private String nomeEstado;
+	private String description;
+	
 	private String uf;
 
 	@OneToMany(mappedBy="state")
 	private List<City> city = new ArrayList<>();
 
-	public Integer getId()
-	{
+	public Integer getId(){
 		return this.id;
 	}
 
-	public void setId(Integer id)
-	{
+	public void setId(Integer id){
 		this.id = id;
 	}
 
-	public String getNome()
-	{
-		return this.nomeEstado;
+	public String getDescription()	{
+		return this.description;
 	}
 
-	public void setNome(String nomeEstado)
-	{
-		this.nomeEstado = nomeEstado;
+	public void setDescription(String description){
+		this.description = description;
 	}
 
 	public String getUf() {
