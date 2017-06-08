@@ -1,5 +1,6 @@
 package br.com.api.capsrnrb.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Cidade
+public class City
 {
 
    @Id
@@ -21,11 +22,11 @@ public class Cidade
    @Column(name="nome")
    private String nomeCidade;
    
-   @OneToMany(mappedBy = "cidade")
-   private List<Endereco> enderecos;
+   @OneToMany(mappedBy = "city")
+   private List<Address> address = new ArrayList<>();
    
    @ManyToOne
-   private Estado estado;
+   private State state;
 
    public Integer getId()
    {
@@ -47,13 +48,13 @@ public class Cidade
       this.nomeCidade = nomeCidade;
    }
 
-   public Estado getEstado()
+   public State getstate()
    {
-      return this.estado;
+      return this.state;
    }
 
-   public void setEstado(Estado estado)
+   public void setstate(State state)
    {
-      this.estado = estado;
+      this.state = state;
    }
 }

@@ -1,3 +1,4 @@
+package br.com.api.capsrnrb.models;
 /*package br.com.api.capsrnrb.models;
 
 import java.util.Collection;

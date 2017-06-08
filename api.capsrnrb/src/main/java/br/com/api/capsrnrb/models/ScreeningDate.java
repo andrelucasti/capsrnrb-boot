@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class DataTriagem {
+public class ScreeningDate {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +18,8 @@ public class DataTriagem {
 	
 	@DateTimeFormat
 	private Calendar data;
-	
-/*	@Transient
-	@JsonIgnoreProperties
-	private String dataTriagemTexto;
-*/		
 
+	
 	public Integer getId() {
 		return id;
 	}

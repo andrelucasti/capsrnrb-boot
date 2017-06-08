@@ -1,5 +1,6 @@
 package br.com.api.capsrnrb.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Estado
+public class State
 {
 
 	@Id
@@ -21,8 +22,8 @@ public class Estado
 	private String nomeEstado;
 	private String uf;
 
-	@OneToMany(mappedBy="estado")
-	private List<Cidade> cidades;
+	@OneToMany(mappedBy="state")
+	private List<City> city = new ArrayList<>();
 
 	public Integer getId()
 	{

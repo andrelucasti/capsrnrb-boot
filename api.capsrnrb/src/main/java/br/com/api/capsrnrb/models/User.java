@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Usuarios
+public class User
 {
 
 	@Id
@@ -36,13 +36,13 @@ public class Usuarios
 	@Column
 	private String localEmArquivo;
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	private Endereco endereco;
+	private Address address;
 	@DateTimeFormat
 	private Calendar dataNascimento;
 	
 	@ManyToMany
-	@JoinTable(name = "usuarios_datatriagem", joinColumns = {@JoinColumn(name="usuarios_id")}, inverseJoinColumns = {@JoinColumn(name="colecaoDataTriagem_id")})
-	private List<DataTriagem> colecaoDataTriagem = new ArrayList<>();
+	@JoinTable(name = "user_screeningdate", joinColumns = {@JoinColumn(name="user_id")}, inverseJoinColumns = {@JoinColumn(name="screeningdate_id")})
+	private List<ScreeningDate> screeningDate = new ArrayList<>();
 	
 	@Column
 	private String tipoDroga;
@@ -94,12 +94,12 @@ public class Usuarios
 		return this.dataNascimento;
 	}
 
-	public List<DataTriagem> getColecaoDataTriagem() {
-		return colecaoDataTriagem;
+	public List<ScreeningDate> getScreeningDate() {
+		return this.screeningDate;
 	}
 
-	public void setColecaoDataTriagem(List<DataTriagem> colecaoDataTriagem) {
-		this.colecaoDataTriagem = colecaoDataTriagem;
+	public void setScreeningDate(List<ScreeningDate> screeningDate) {
+		this.screeningDate = screeningDate;
 	}
 
 
@@ -107,14 +107,14 @@ public class Usuarios
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Endereco getEndereco()
+	public Address getaddress()
 	{
-		return this.endereco;
+		return this.address;
 	}
 
-	public void setEndereco(Endereco endereco)
+	public void setaddress(Address address)
 	{
-		this.endereco = endereco;
+		this.address = address;
 	}
 
 	public String getLocalEmArquivo() {

@@ -1,5 +1,6 @@
 package br.com.api.capsrnrb.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,10 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
-public class Endereco
+public class Address
 {
 
    @Id
@@ -25,12 +24,11 @@ public class Endereco
    private String bairro;
    
    
-   @OneToMany(mappedBy = "endereco")
-   @JsonIgnoreProperties(value="endereco")
-   private List<Usuarios> usuarios;
+   @OneToMany(mappedBy = "address")
+   private List<User> usuarios = new ArrayList<>();
    
    @ManyToOne
-   private Cidade cidade;
+   private City city;
 
    public Integer getId()
    {
@@ -82,14 +80,14 @@ public class Endereco
       this.complemento = complemento;
    }
 
-   public Cidade getCidade()
+   public City getCity()
    {
-      return this.cidade;
+      return this.city;
    }
 
-   public void setCidade(Cidade cidade)
+   public void setCidade(City city)
    {
-      this.cidade = cidade;
+      this.city = city;
    }
 
 public String getBairro() {

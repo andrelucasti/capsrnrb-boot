@@ -1,3 +1,4 @@
+package br.com.api.capsrnrb.models;
 /*package br.com.capsadr.models;
 
 import javax.persistence.Entity;
