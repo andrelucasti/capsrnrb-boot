@@ -1,16 +1,13 @@
-INSERT INTO `Administrador` (`login`, `nome`, `senha`) VALUES
+INSERT INTO `root` (`login`, `name`, `password`) VALUES
 ('andrelucastic@gmail.com', 'André Lucas', '$2a$04$qP517gz1KNVEJUTCkUQCY.JzEoXzHFjLAhPQjrg5iP6Z/UmWjvUhq');
 
 
-INSERT INTO `Roles` (`descricao`) VALUES
+INSERT INTO `Roles` (`description`) VALUES
 ('ROLE_ADMIN');
 
 
-INSERT INTO `Administrador_Roles` (`Administrador_login`, `roles_descricao`) VALUES
+INSERT INTO `root_roles` (`root_login`, `roles_description`) VALUES
 ('andrelucastic@gmail.com', 'ROLE_ADMIN');
-
--- --------------------------------------------------------
-
 
 
 INSERT INTO `Estado` (`id`, `nome`, `uf`) VALUES
@@ -43,8 +40,7 @@ INSERT INTO `Estado` (`id`, `nome`, `uf`) VALUES
 (27, 'Tocantins', 'TO');
 
 
-
-INSERT INTO `Cidade` (`id`, `nome`, `estado_id`) VALUES
+INSERT INTO `city` (`id`, `description`, `state_id`) VALUES
 (1, 'Afonso Cláudio', 8),
 (2, 'Água Doce do Norte', 8),
 (3, 'Águia Branca', 8),
@@ -2111,8 +2107,54 @@ INSERT INTO `Cidade` (`id`, `nome`, `estado_id`) VALUES
 (2064, 'Monte Sião', 11),
 (2065, 'Montes Claros', 11),
 (2066, 'Montezuma', 11),
+(2619, 'Conceição', 15),
+(2620, 'Condado', 15),
+(2621, 'Conde', 15),
+(2622, 'Congo', 15),
+(2623, 'Coremas', 15),
+(2624, 'Coxixola', 15),
+(2625, 'Cruz do Espírito Santo', 15),
+(2626, 'Cubati', 15),
+(2627, 'Cuité', 15),
+(2628, 'Cuité de Mamanguape', 15),
+(2629, 'Cuitegi', 15),
+(2630, 'Curral de Cima', 15),
+(2631, 'Curral Velho', 15),
+(2632, 'Damião', 15),
+(2633, 'Desterro', 15),
+(2634, 'Diamante', 15),
+(2635, 'Dona Inês', 15),
+(2636, 'Duas Estradas', 15),
+(2637, 'Emas', 15),
+(2638, 'Esperança', 15),
+(2639, 'Fagundes', 15),
+(2640, 'Frei Martinho', 15),
+(2641, 'Gado Bravo', 15),
+(2642, 'Guarabira', 15),
+(2643, 'Gurinhém', 15),
+(2644, 'Gurjão', 15),
+(2645, 'Ibiara', 15),
+(2646, 'Igaracy', 15),
+(2647, 'Imaculada', 15),
+(2648, 'Ingá', 15),
+(2649, 'Itabaiana', 15),
+(2650, 'Itaporanga', 15),
+(2651, 'Itapororoca', 15),
+(2652, 'Itatuba', 15),
+(2653, 'Jacaraú', 15),
+(2654, 'Jericó', 15),
+(2655, 'João Pessoa', 15),
+(2656, 'Juarez Távora', 15),
+(2657, 'Juazeirinho', 15),
+(2658, 'Junco do Seridó', 15),
+(2659, 'Juripiranga', 15),
+(2660, 'Juru', 15),
+(2661, 'Lagoa', 15),
+(2662, 'Lagoa de Dentro', 15),
+(2663, 'Lagoa Seca', 15),
+(2664, 'Lastro', 15),
 (2067, 'Morada Nova de Minas', 11);
-INSERT INTO `Cidade` (`id`, `nome`, `estado_id`) VALUES
+INSERT INTO `city` (`id`, `description`, `state_id`) VALUES
 (2068, 'Morro da Garça', 11),
 (2069, 'Morro do Pilar', 11),
 (2070, 'Munhoz', 11),
@@ -2664,52 +2706,6 @@ INSERT INTO `Cidade` (`id`, `nome`, `estado_id`) VALUES
 (2616, 'Catingueira', 15),
 (2617, 'Catolé do Rocha', 15),
 (2618, 'Caturité', 15),
-(2619, 'Conceição', 15),
-(2620, 'Condado', 15),
-(2621, 'Conde', 15),
-(2622, 'Congo', 15),
-(2623, 'Coremas', 15),
-(2624, 'Coxixola', 15),
-(2625, 'Cruz do Espírito Santo', 15),
-(2626, 'Cubati', 15),
-(2627, 'Cuité', 15),
-(2628, 'Cuité de Mamanguape', 15),
-(2629, 'Cuitegi', 15),
-(2630, 'Curral de Cima', 15),
-(2631, 'Curral Velho', 15),
-(2632, 'Damião', 15),
-(2633, 'Desterro', 15),
-(2634, 'Diamante', 15),
-(2635, 'Dona Inês', 15),
-(2636, 'Duas Estradas', 15),
-(2637, 'Emas', 15),
-(2638, 'Esperança', 15),
-(2639, 'Fagundes', 15),
-(2640, 'Frei Martinho', 15),
-(2641, 'Gado Bravo', 15),
-(2642, 'Guarabira', 15),
-(2643, 'Gurinhém', 15),
-(2644, 'Gurjão', 15),
-(2645, 'Ibiara', 15),
-(2646, 'Igaracy', 15),
-(2647, 'Imaculada', 15),
-(2648, 'Ingá', 15),
-(2649, 'Itabaiana', 15),
-(2650, 'Itaporanga', 15),
-(2651, 'Itapororoca', 15),
-(2652, 'Itatuba', 15),
-(2653, 'Jacaraú', 15),
-(2654, 'Jericó', 15),
-(2655, 'João Pessoa', 15),
-(2656, 'Juarez Távora', 15),
-(2657, 'Juazeirinho', 15),
-(2658, 'Junco do Seridó', 15),
-(2659, 'Juripiranga', 15),
-(2660, 'Juru', 15),
-(2661, 'Lagoa', 15),
-(2662, 'Lagoa de Dentro', 15),
-(2663, 'Lagoa Seca', 15),
-(2664, 'Lastro', 15),
 (2665, 'Livramento', 15),
 (2666, 'Logradouro', 15),
 (2667, 'Lucena', 15),
