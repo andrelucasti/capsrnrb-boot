@@ -35,12 +35,12 @@ public class User
 	private String nuCartSus;
 	@Column
 	private String fileLocal;
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Address address;
 	@DateTimeFormat
 	private Calendar dateOfBirth;
 	
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JoinTable(name = "user_screeningdate", joinColumns = {@JoinColumn(name="user_id")}, inverseJoinColumns = {@JoinColumn(name="screeningdate_id")})
 	private List<ScreeningDate> screeningDate = new ArrayList<>();
 	

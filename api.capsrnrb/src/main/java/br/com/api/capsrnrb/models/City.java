@@ -38,22 +38,22 @@ public class City
       this.id = id;
    }
 
-   public String getNome()
+   public String getDescription()
    {
       return this.description;
    }
 
-   public void setNome(String description)
+   public void setDescription(String description)
    {
       this.description = description;
    }
 
-   public State getstate()
+   public State getState()
    {
       return this.state;
    }
 
-   public void setstate(State state)
+   public void setState(State state)
    {
       this.state = state;
    }

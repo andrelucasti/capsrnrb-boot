@@ -28,11 +28,11 @@ public class ScreeningDate {
 		this.id = id;
 	}
 
-	public Calendar getdateTriagem() {
+	public Calendar getDate() {
 		return date;
 	}
 
-	public void setdateTriagem(Calendar date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 

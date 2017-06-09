@@ -26,7 +26,7 @@ public class StateRestController {
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value="/city/{idState}")
+	@RequestMapping(method = RequestMethod.GET, value="/citys/{idState}")
 	public @ResponseBody Iterable<City> listarCidades(@PathVariable("idState") Integer pIdState){
 			State state = serviceOther.findState(pIdState);
 			Iterable<City> citys = serviceOther.findeAllCity(state);

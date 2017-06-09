@@ -26,13 +26,13 @@ public class ServiceUser {
 		return daoUser.findOne(id);
 	}
 
-	public void saveUser(User usuarios) {
-		daoUser.save(usuarios);
+	public void saveUser(User user) {
+		daoUser.save(user);
 		
 	}
 
-	public void editUser(User usuarios) {
-		this.saveUser(usuarios);
+	public void editUser(User user) {
+		this.saveUser(user);
 	}
 
 	public void delete(Long id) {
