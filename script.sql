@@ -10,7 +10,7 @@ INSERT INTO `root_roles` (`root_login`, `roles_description`) VALUES
 ('andrelucastic@gmail.com', 'ROLE_ADMIN');
 
 
-INSERT INTO `Estado` (`id`, `nome`, `uf`) VALUES
+INSERT INTO `state` (`id`, `description`, `uf`) VALUES
 (1, 'Acre', 'AC'),
 (2, 'Alagoas', 'AL'),
 (3, 'Amazonas', 'AM'),
@@ -4018,7 +4018,7 @@ INSERT INTO `city` (`id`, `description`, `state_id`) VALUES
 (3974, 'Cruz Alta', 23),
 (3975, 'Cruzaltense', 23),
 (3976, 'Cruzeiro do Sul', 23);
-INSERT INTO `Cidade` (`id`, `nome`, `estado_id`) VALUES
+INSERT INTO `city` (`id`, `description`, `state_id`) VALUES
 (3977, 'David Canabarro', 23),
 (3978, 'Derrubadas', 23),
 (3979, 'Dezesseis de Novembro', 23),
