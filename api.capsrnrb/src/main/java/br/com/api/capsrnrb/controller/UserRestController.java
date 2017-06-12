@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.api.capsrnrb.models.User;
 import br.com.api.capsrnrb.service.ServiceUser;
 
-
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 public class UserRestController {
@@ -52,8 +53,8 @@ public class UserRestController {
 		
 		return status;
 	}
+
 	
-	//FIXME TESTAR
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json", value="/{id}")
 	@CacheEvict(allEntries = true, value ="appHome")
 	public @ResponseBody String alterar(@PathVariable("id") Long id, @RequestBody User usuarios, HttpServletRequest request, HttpServletResponse response){
@@ -64,8 +65,7 @@ public class UserRestController {
 		return status;
 	}
 	
-
-	//FIXME TESTAR
+	
 	@RequestMapping(method = RequestMethod.DELETE, produces = "application/json", value="/{id}")
 	@CacheEvict(allEntries = true, value ="appHome")
 	public @ResponseBody String remover(@PathVariable("id") Long id, @RequestBody User usuarios, HttpServletRequest request, HttpServletResponse response){

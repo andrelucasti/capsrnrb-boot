@@ -1,94 +1,85 @@
 package br.com.api.capsrnrb.models;
-/*package br.com.api.capsrnrb.models;
 
-import java.util.Collection;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class Administrador  implements UserDetails{
-	
-	*//**
-	 * 
-	 *//*
-	private static final long serialVersionUID = 1L;
-	
+public class Root {
 
 	@Id
-	private String login;
-	private String nome;
+	private Integer id;
+	private String username;
+	private String email;
+	private String password;
+	private Boolean enabled;
+	private Date lastPasswordResetDate;
 	
-	private String senha;
+	
 	
 	@ManyToMany(fetch=FetchType.EAGER)
-	private List<Roles> roles;
+	@JoinTable(
+			name = "ROOTS_ROLES",
+			joinColumns={@JoinColumn(name = "ROOT_ID", referencedColumnName = "ID")},
+			inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName = "ID")}
+			)
+	private List<Role> roles = new ArrayList<>();
 	
-	
-	public String getNome() {
-		return nome;
+
+	public Integer getId() {
+		return id;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getSenha() {
-		return senha;
+	public String getEmail() {
+		return email;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-		
-	public List<Roles> getRoles() {
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public List<Role> getRoles() {
 		return roles;
 	}
-	public void setRoles(List<Roles> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	
-	
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.roles;
+
+	public Boolean getEnabled() {
+		return enabled;
 	}
-	@Override
-	public String getPassword() {
-		return this.senha;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
-	@Override
-	public String getUsername() {
-		return this.login;
+	public Date getLastPasswordResetDate() {
+		return lastPasswordResetDate;
 	}
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
+	public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+		this.lastPasswordResetDate = lastPasswordResetDate;
 	}
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
+
+
 	
 	
 }
-*/
