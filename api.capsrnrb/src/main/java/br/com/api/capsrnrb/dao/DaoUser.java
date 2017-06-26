@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import br.com.api.capsrnrb.models.User;
 
+
 public interface DaoUser extends CrudRepository<User, Long> {
 	
 	

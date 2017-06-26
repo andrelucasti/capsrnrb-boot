@@ -1,6 +1,7 @@
 package br.com.api.capsrnrb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +12,7 @@ import br.com.api.capsrnrb.models.City;
 import br.com.api.capsrnrb.models.State;
 import br.com.api.capsrnrb.service.ServiceOther;
 
+@CrossOrigin
 @RestController
 public class StateRestController {
 	

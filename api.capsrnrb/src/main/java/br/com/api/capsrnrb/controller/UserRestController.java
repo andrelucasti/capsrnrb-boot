@@ -4,8 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.api.capsrnrb.models.User;
 import br.com.api.capsrnrb.service.ServiceUser;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserRestController {
@@ -28,7 +26,7 @@ public class UserRestController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	@Cacheable(value="appHome")
+	//@Cacheable(value="appHome")
 	public Iterable<User> listar(){
 		Iterable<User> lista = serviceUser.findAllUser();
 		
@@ -44,7 +42,7 @@ public class UserRestController {
 	
 	
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
-	@CacheEvict(allEntries = true, value ="appHome")
+	//@CacheEvict(allEntries = true, value ="appHome")
 	public @ResponseBody String salvar(@RequestBody User usuarios, HttpServletRequest request, HttpServletResponse response){
 		
 		String status = String.valueOf(response.getStatus());
@@ -56,7 +54,7 @@ public class UserRestController {
 
 	
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json", value="/{id}")
-	@CacheEvict(allEntries = true, value ="appHome")
+	//@CacheEvict(allEntries = true, value ="appHome")
 	public @ResponseBody String alterar(@PathVariable("id") Long id, @RequestBody User usuarios, HttpServletRequest request, HttpServletResponse response){
 		String status = String.valueOf(response.getStatus());
 
@@ -67,7 +65,7 @@ public class UserRestController {
 	
 	
 	@RequestMapping(method = RequestMethod.DELETE, produces = "application/json", value="/{id}")
-	@CacheEvict(allEntries = true, value ="appHome")
+	//@CacheEvict(allEntries = true, value ="appHome")
 	public @ResponseBody String remover(@PathVariable("id") Long id, @RequestBody User usuarios, HttpServletRequest request, HttpServletResponse response){
 		String status = String.valueOf(response.getStatus());
 		
