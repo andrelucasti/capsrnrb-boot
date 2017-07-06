@@ -30,12 +30,12 @@ public class User
 	@Column
 	private String motherName;
 	@Column
-	private Integer nuProntuario;
+	private Long nuProntuario;
 	@Column
 	private String nuCartSus;
 	@Column
 	private String fileLocal;
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private Address address;
 	@DateTimeFormat
 	private Calendar dateOfBirth;
@@ -74,11 +74,11 @@ public class User
 		this.motherName = motherName;
 	}
 
-	public Integer getNuProntuario(){
+	public Long getNuProntuario(){
 		return this.nuProntuario;
 	}
 
-	public void setNuProntuario(Integer nuProntuario){
+	public void setNuProntuario(Long nuProntuario){
 		this.nuProntuario = nuProntuario;
 	}
 

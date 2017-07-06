@@ -53,9 +53,9 @@ public class UserRestController {
 	}
 
 	
-	@RequestMapping(method = RequestMethod.PUT, produces = "application/json", value="/{id}")
+	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
 	//@CacheEvict(allEntries = true, value ="appHome")
-	public @ResponseBody String alterar(@PathVariable("id") Long id, @RequestBody User usuarios, HttpServletRequest request, HttpServletResponse response){
+	public @ResponseBody String alterar(@RequestBody User usuarios, HttpServletRequest request, HttpServletResponse response){
 		String status = String.valueOf(response.getStatus());
 
 		serviceUser.editUser(usuarios);
@@ -66,7 +66,7 @@ public class UserRestController {
 	
 	@RequestMapping(method = RequestMethod.DELETE, produces = "application/json", value="/{id}")
 	//@CacheEvict(allEntries = true, value ="appHome")
-	public @ResponseBody String remover(@PathVariable("id") Long id, @RequestBody User usuarios, HttpServletRequest request, HttpServletResponse response){
+	public @ResponseBody String remover(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response){
 		String status = String.valueOf(response.getStatus());
 		
 		serviceUser.delete(id);
