@@ -1,5 +1,7 @@
 package br.com.api.capsrnrb.service;
 
+import java.io.Serializable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,9 +9,13 @@ import br.com.api.capsrnrb.dao.DaoUser;
 import br.com.api.capsrnrb.models.User;
 
 @Service
-public class ServiceUser {
+public class ServiceUser implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private DaoUser daoUser;
 	

@@ -1,29 +1,36 @@
 package br.com.api.capsrnrb.models;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
-public class Root {
+public class Root implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	private Integer id;
 	private String username;
 	private String email;
 	private String password;
-	private Boolean enabled;
-	private Date lastPasswordResetDate;
 	
+
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, })
+	private Token token;
 	
 	
 	@ManyToMany(fetch=FetchType.EAGER)
@@ -65,21 +72,12 @@ public class Root {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-
-	public Boolean getEnabled() {
-		return enabled;
-	}
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
-	public Date getLastPasswordResetDate() {
-		return lastPasswordResetDate;
-	}
-	public void setLastPasswordResetDate(Date lastPasswordResetDate) {
-		this.lastPasswordResetDate = lastPasswordResetDate;
-	}
-
-
 	
+	public Token getToken() {
+		return token;
+	}
+	public void setToken(Token token) {
+		this.token = token;
+	}
 	
 }

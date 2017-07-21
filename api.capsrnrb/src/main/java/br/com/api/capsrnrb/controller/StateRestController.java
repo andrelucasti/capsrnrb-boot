@@ -23,7 +23,6 @@ public class StateRestController {
 	
 	@RequestMapping(method = RequestMethod.GET, value="/states")
 	public @ResponseBody Iterable<State> listarEstados(){
-		
 		return serviceOther.findAllState();
 	}
 	

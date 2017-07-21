@@ -1,5 +1,6 @@
-package br.com.api.capsrnrb.models;
+/*package br.com.api.capsrnrb.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -8,15 +9,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class CustomUserDetailsService implements UserDetails {
+import br.com.api.capsrnrb.models.Root;
+
+public class ClientDetailsServiceImpl implements UserDetails , Serializable{
 	
-	/**
+	*//**
 	 * 
-	 */
+	 *//*
 	private static final long serialVersionUID = 1L;
 	private Root root;
 
-	public CustomUserDetailsService(Root root) {
+	public ClientDetailsServiceImpl(Root root) {
 		this.root = root;
 	}
 	
@@ -65,3 +68,4 @@ public class CustomUserDetailsService implements UserDetails {
 	}
 
 }
+*/
