@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import br.com.api.capsrnrb.dao.DaoRoot;
 import br.com.api.capsrnrb.exceptions.AdminNotFindException;
 import br.com.api.capsrnrb.models.Root;
+import br.com.api.capsrnrb.models.Token;
 
 @Service
 public class ServiceRoot {
@@ -35,5 +36,10 @@ public class ServiceRoot {
 	
 	public void update(Root root){
 		daoRoot.save(root);
+	}
+
+
+	public Root findRootByToken(Token pToken) {
+		return daoRoot.findRootByToken(pToken);
 	}
 }

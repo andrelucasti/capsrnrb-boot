@@ -1,5 +1,10 @@
 package br.com.api.capsrnrb.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.oltu.oauth2.as.response.OAuthASResponse;
+import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
+import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -7,34 +12,34 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import br.com.api.capsrnrb.exceptions.AdminNotFindException;
 import br.com.api.capsrnrb.exceptions.OAuthCredencialExeption;
-import br.com.api.capsrnrb.exceptions.SessionInvalidateException;
+import br.com.api.capsrnrb.exceptions.TokenInvalidException;
 
 @CrossOrigin
 @RestControllerAdvice
 public class ExceptionHandlerController {
 	
-	@ExceptionHandler(SessionInvalidateException.class)
-	public @ResponseBody String errorCaptureSessionInvalidate(){
-		
-		return String.valueOf(401); 
-	}
 
 	@ExceptionHandler(AdminNotFindException.class)
-	public @ResponseBody String errorAdminNotFind(){
-		return String.valueOf(403); 
+	public @ResponseBody OAuthResponse errorAdminNotFind() throws OAuthSystemException{
+		return OAuthASResponse.errorResponse(HttpServletResponse.SC_UNAUTHORIZED).buildJSONMessage();
 	}
 	
 	@ExceptionHandler(OAuthCredencialExeption.class)
-	public @ResponseBody String credencialInvalidate(){
-		return String.valueOf(404); 
+	public @ResponseBody OAuthResponse credencialInvalidate() throws OAuthSystemException{
+		return OAuthASResponse.errorResponse(HttpServletResponse.SC_UNAUTHORIZED).buildJSONMessage();
+	}
+	
+	@ExceptionHandler(TokenInvalidException.class)
+	public @ResponseBody OAuthResponse errorTokenInvalid()throws OAuthSystemException{
+		return OAuthASResponse.errorResponse(HttpServletResponse.SC_UNAUTHORIZED).buildJSONMessage();
+	
 	}
 	
 	@ExceptionHandler(Exception.class)
-	public @ResponseBody String errorCaptureAny(){
-		return String.valueOf(404); 
+	public @ResponseBody OAuthResponse errorCaptureAny()throws OAuthSystemException{
+		return OAuthASResponse.errorResponse(HttpServletResponse.SC_INTERNAL_SERVER_ERROR).buildJSONMessage();
+	
 	}
-	
-	
 	
 	
 }

@@ -1,8 +1,9 @@
 package br.com.api.capsrnrb.service;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 import org.apache.oltu.oauth2.as.issuer.MD5Generator;
 import org.apache.oltu.oauth2.as.issuer.OAuthIssuerImpl;
@@ -13,11 +14,14 @@ import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.api.capsrnrb.exceptions.AdminNotFindException;
 import br.com.api.capsrnrb.exceptions.OAuthCredencialExeption;
 import br.com.api.capsrnrb.models.Root;
 import br.com.api.capsrnrb.models.Token;
+import br.com.api.capsrnrb.util.LibraryDateHour;
+
 
 @Service
 public class ServiceOAuth2 {
@@ -27,15 +31,25 @@ public class ServiceOAuth2 {
 	
 	@Autowired
 	private ServiceRoot serviceRoot;
+	@Autowired
+	private ServiceToken serviceToken;
+	@Autowired
+	private LibraryDateHour libDateHour;
 	
+	@Transactional
 	public OAuthResponse doLogin(HttpServletRequest request) throws OAuthSystemException, OAuthProblemException, OAuthCredencialExeption, AdminNotFindException {
 		
 		if (isValidAccess(request)) {
+			
 			Root root = this.getValidateRoot(request);
+			
 			String tokenOAuth2 = this.getToken();
 			
 			Token token = new Token();
 			token.setToken(tokenOAuth2);
+			token.setDateCreated(libDateHour.getCurrentDate());
+			token.setDateToExpire(libDateHour.nextTimeInMinutes(10));
+			token.setEnable(true);
 			root.setToken(token);
 			
 			serviceRoot.update(root);
@@ -79,6 +93,7 @@ public class ServiceOAuth2 {
 	
 	
 	public Root getValidateRoot(HttpServletRequest request) throws AdminNotFindException, OAuthSystemException, OAuthProblemException{
+		
 		OAuthTokenRequest oauthRequest = new OAuthTokenRequest(request);
 		String username = oauthRequest.getUsername();
 		String password = oauthRequest.getPassword();
@@ -91,5 +106,67 @@ public class ServiceOAuth2 {
 		
 	}
 	
+	
+
+	public boolean tokenIsValid(String pToken, Token pTokenRoot){
+		if(pTokenRoot != null && !pToken.equals(pTokenRoot.getToken())){
+			return false;
+		} else {
+			Token token = new Token();
+			token.setToken(pToken);
+			Root root = serviceRoot.findRootByToken(token);
+			
+			if (root == null) {
+				return false;
+			}
+			
+			
+			return true;
+		}
+	}
+	
+	
+	public String updateToken(String pToken) throws OAuthSystemException, OAuthProblemException, AdminNotFindException{
+		
+		Token token = this.serviceToken.findOne(pToken);
+		
+		if (token.getDateToExpire().before(new Date())) {
+			token.setEnable(false);
+			this.serviceToken.update(token);
+			
+			return getTokenUpdated(token);
+			
+		} else {
+			return pToken;
+		}
+		
+		
+	}
+	
+	public Token getTokenRootAccess(HttpServletRequest request) throws AdminNotFindException, OAuthSystemException, OAuthProblemException{
+		Root root = this.getValidateRoot(request);
+		
+		
+		return root.getToken();
+		
+	}
+	
+	public String getTokenUpdated(Token pToken) throws OAuthSystemException, OAuthProblemException, AdminNotFindException{
+		String tokenOAuth2 = this.getToken();
+		
+		Token token = new Token();
+		token.setToken(tokenOAuth2);
+		token.setDateCreated(libDateHour.getCurrentDate());
+		token.setDateToExpire(libDateHour.nextTimeInMinutes(10));
+		
+		Root root = serviceRoot.findRootByToken(pToken);
+		root.setToken(token);
+		
+		serviceRoot.update(root);
+		
+		return tokenOAuth2;
+		
+	
+	}
 
 }

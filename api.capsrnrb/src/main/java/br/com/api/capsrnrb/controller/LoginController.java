@@ -30,7 +30,9 @@ public class LoginController {
 	
 	@RequestMapping(method = RequestMethod.POST,  produces = "application/json")
 	public @ResponseBody OAuthResponse doLogin (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, AdminNotFindException, OAuthSystemException, OAuthProblemException, OAuthCredencialExeption{
-		
+
+		System.out.println(request.getHeader("Content-Type"));
+		System.out.println(request.getHeader("Authorization"));
 		OAuthResponse responseOauth = service.doLogin(request);
 		
 		
