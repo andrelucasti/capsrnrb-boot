@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,7 +19,10 @@ public class ScreeningDate {
 	
 	@DateTimeFormat
 	private Calendar date;
-
+	
+	@Transient
+	private String dateText;
+	
 	
 	public Integer getId() {
 		return id;
@@ -36,5 +40,15 @@ public class ScreeningDate {
 		this.date = date;
 	}
 
+	public String getDateText() {
+		return dateText;
+	}
+
+	public void setDateText(String dateText) {
+		this.dateText = dateText;
+	}
+
+
+	
 	
 }

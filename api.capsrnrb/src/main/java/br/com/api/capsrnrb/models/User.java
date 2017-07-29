@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -48,6 +49,9 @@ public class User
 	private String drugType;
 	@Column
 	private String phone;
+	
+	@Transient
+	private String dateOfBirthText;
 	
 		
 	public Long getId(){
@@ -94,17 +98,16 @@ public class User
 		return this.dateOfBirth;
 	}
 
+	public void setdateOfBirth(Calendar dateOfBirth){
+		this.dateOfBirth = dateOfBirth;		
+	}
+
 	public List<ScreeningDate> getScreeningDate() {
 		return this.screeningDate;
 	}
 
 	public void setScreeningDate(List<ScreeningDate> screeningDate) {
 		this.screeningDate = screeningDate;
-	}
-
-
-	public void setdateOfBirth(Calendar dateOfBirth){
-		this.dateOfBirth = dateOfBirth;
 	}
 
 	public Address getAddress(){
@@ -139,5 +142,15 @@ public class User
 		this.phone = phone;
 	}
 
-		
+	public String getDateOfBirthText() {
+		return dateOfBirthText;
+	}
+
+	public void setDateOfBirthText(String dateOfBirthText) {
+		this.dateOfBirthText = dateOfBirthText;
+	}
+
+	
+
+	
 }

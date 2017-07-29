@@ -1,5 +1,7 @@
 package br.com.api.capsrnrb.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,6 +27,19 @@ public class LibraryDateHour {
 		calendar.setTime(new Date());
 		
 		return calendar;
+	}
+	
+	
+	
+	public Calendar converteStringInCalendar(String pDate) throws ParseException{
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(sdf.parse(pDate));
+		
+		return calendar;
+		
+		
 	}
 
 }

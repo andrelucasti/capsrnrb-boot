@@ -1,6 +1,7 @@
 package br.com.api.capsrnrb.controller;
 
 import java.io.Serializable;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,13 +59,6 @@ public class UserRestController implements Serializable {
 
 		Iterable<User> lista = serviceUser.findAllUser();
 
-
-		/*
-		return OAuthASResponse.tokenResponse(HttpServletResponse.SC_OK).setAccessToken(updateToken)
-				.setParam("data", lbApi.convertCollectionInJson(lista))
-				.buildJSONMessage();*/
-
-
 		
 		return lista;
 	}
@@ -79,14 +73,14 @@ public class UserRestController implements Serializable {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE})
 	//@CacheEvict(allEntries = true, value ="appHome")
-	public @ResponseBody OAuthResponse salvar(@RequestBody User usuarios, HttpServletRequest request, HttpServletResponse response) throws OAuthSystemException, OAuthProblemException, AdminNotFindException{
+	public @ResponseBody OAuthResponse salvar(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) throws OAuthSystemException, OAuthProblemException, AdminNotFindException, ParseException{
 
 		OAuthAccessResourceRequest oauthRequest = new OAuthAccessResourceRequest(request, ParameterStyle.HEADER);
 
 		String tokenRequest = oauthRequest.getAccessToken();
 		String updateToken = serviceOAuth2.updateToken(tokenRequest);
 
-		serviceUser.saveUser(usuarios);
+		serviceUser.saveUser(user);
 
 
 		return OAuthASResponse.tokenResponse(HttpServletResponse.SC_OK).setRefreshToken(updateToken).setParam("", "").buildJSONMessage();
@@ -96,13 +90,13 @@ public class UserRestController implements Serializable {
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE})
 	//@CacheEvict(allEntries = true, value ="appHome")
-	public @ResponseBody OAuthResponse alterar(@RequestBody User usuarios, HttpServletRequest request, HttpServletResponse response) throws SessionInvalidateException, OAuthSystemException, OAuthProblemException, AdminNotFindException{
+	public @ResponseBody OAuthResponse alterar(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) throws SessionInvalidateException, OAuthSystemException, OAuthProblemException, AdminNotFindException, ParseException{
 		OAuthAccessResourceRequest oauthRequest = new OAuthAccessResourceRequest(request, ParameterStyle.HEADER);
 
 		String tokenRequest = oauthRequest.getAccessToken();
 		String updateToken = serviceOAuth2.updateToken(tokenRequest);
 
-		serviceUser.editUser(usuarios); 
+		serviceUser.editUser(user); 
 
 		return OAuthASResponse.tokenResponse(HttpServletResponse.SC_OK).setRefreshToken(updateToken).setParam("", "").buildJSONMessage();
 	}
@@ -113,11 +107,12 @@ public class UserRestController implements Serializable {
 	public @ResponseBody OAuthResponse remover(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) throws SessionInvalidateException, OAuthSystemException, OAuthProblemException, AdminNotFindException{
 		OAuthAccessResourceRequest oauthRequest = new OAuthAccessResourceRequest(request, ParameterStyle.HEADER);
 		String tokenRequest = oauthRequest.getAccessToken();
+		
 		String updateToken = serviceOAuth2.updateToken(tokenRequest);
-
 		serviceUser.delete(id);
 
 		return OAuthASResponse.tokenResponse(HttpServletResponse.SC_OK).setRefreshToken(updateToken).setParam("", "").buildJSONMessage();
 	}
-
+	
+	
 }
