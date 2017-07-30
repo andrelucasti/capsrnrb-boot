@@ -1,4 +1,4 @@
-/*INSERT INTO `role`(`id`, `name`) VALUES (1, "ROLE_ADMIN");
+INSERT INTO `role`(`id`, `name`) VALUES (1, "ROLE_ADMIN");
 
 INSERT INTO `root`(`id`, `email`, `password`, `username`, `token_token`) 
 VALUES 
@@ -5611,5 +5611,5 @@ INSERT INTO `city` (`id`, `description`, `state_id`) VALUES
 
 -- --------------------------------------------------------
 
-*/
+
 
