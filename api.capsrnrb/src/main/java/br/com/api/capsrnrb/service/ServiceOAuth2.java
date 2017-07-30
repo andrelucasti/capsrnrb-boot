@@ -1,5 +1,7 @@
 package br.com.api.capsrnrb.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,7 @@ import br.com.api.capsrnrb.exceptions.OAuthCredencialExeption;
 import br.com.api.capsrnrb.models.Root;
 import br.com.api.capsrnrb.models.Token;
 import br.com.api.capsrnrb.util.LibraryDateHour;
+import br.com.api.capsrnrb.util.LibraryFunctions;
 
 
 @Service
@@ -35,9 +38,11 @@ public class ServiceOAuth2 {
 	private ServiceToken serviceToken;
 	@Autowired
 	private LibraryDateHour libDateHour;
+	@Autowired
+	private LibraryFunctions lbFunctions;
 	
 	@Transactional
-	public OAuthResponse doLogin(HttpServletRequest request) throws OAuthSystemException, OAuthProblemException, OAuthCredencialExeption, AdminNotFindException {
+	public OAuthResponse doLogin(HttpServletRequest request) throws OAuthSystemException, OAuthProblemException, OAuthCredencialExeption, AdminNotFindException, NoSuchAlgorithmException, UnsupportedEncodingException {
 		
 		if (isValidAccess(request)) {
 			
@@ -92,7 +97,7 @@ public class ServiceOAuth2 {
 	}
 	
 	
-	public Root getValidateRoot(HttpServletRequest request) throws AdminNotFindException, OAuthSystemException, OAuthProblemException{
+	public Root getValidateRoot(HttpServletRequest request) throws AdminNotFindException, OAuthSystemException, OAuthProblemException, NoSuchAlgorithmException, UnsupportedEncodingException{
 		
 		OAuthTokenRequest oauthRequest = new OAuthTokenRequest(request);
 		String username = oauthRequest.getUsername();
@@ -100,7 +105,7 @@ public class ServiceOAuth2 {
 		
 		Root root = new Root();
 		root.setUsername(username);
-		root.setPassword(password);
+		root.setPassword(lbFunctions.convertStringToSHA256(password));
 		
 		return serviceRoot.doLogin(root);
 		
@@ -143,7 +148,7 @@ public class ServiceOAuth2 {
 		
 	}
 	
-	public Token getTokenRootAccess(HttpServletRequest request) throws AdminNotFindException, OAuthSystemException, OAuthProblemException{
+	public Token getTokenRootAccess(HttpServletRequest request) throws AdminNotFindException, OAuthSystemException, OAuthProblemException, NoSuchAlgorithmException, UnsupportedEncodingException{
 		Root root = this.getValidateRoot(request);
 		
 		

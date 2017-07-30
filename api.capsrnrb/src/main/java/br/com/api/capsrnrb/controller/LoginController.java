@@ -1,6 +1,7 @@
 package br.com.api.capsrnrb.controller;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,7 @@ public class LoginController {
 	
 	
 	@RequestMapping(method = RequestMethod.POST,  produces = "application/json")
-	public @ResponseBody OAuthResponse doLogin (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, AdminNotFindException, OAuthSystemException, OAuthProblemException, OAuthCredencialExeption{
+	public @ResponseBody OAuthResponse doLogin (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, AdminNotFindException, OAuthSystemException, OAuthProblemException, OAuthCredencialExeption, NoSuchAlgorithmException{
 
 		System.out.println(request.getHeader("Content-Type"));
 		System.out.println(request.getHeader("Authorization"));
