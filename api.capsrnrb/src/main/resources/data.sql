@@ -10,7 +10,7 @@ INSERT INTO `root`(`id`, `email`, `password`, `username`, `token_token`)
 VALUES 
 (1, 
 'andrelucastic@gmail.com',
-'0d9bf84dad4193da928093a3b705a2d5d2d26f50bf9c646bc433f34dffe2176e',
+'ba3cbca14922df4f64e2c3eef77da531719c0fbc6c60a1eb19e65a224746272f',
 'andrelucastic',
 null);
 
