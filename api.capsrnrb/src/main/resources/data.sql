@@ -1,4 +1,4 @@
-DELETE  FROM roots_roles;
+/*DELETE  FROM roots_roles;
 DELETE  FROM root;
 DELETE  FROM role;
 DELETE  FROM city;
@@ -5628,3 +5628,4 @@ INSERT INTO `city` (`id`, `description`, `state_id`) VALUES
 
 
 
+*/
