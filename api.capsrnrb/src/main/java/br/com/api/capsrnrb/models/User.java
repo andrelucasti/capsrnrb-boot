@@ -28,16 +28,23 @@ public class User
 	
 	@Column
 	private String name;
-	@Column
+	
+	@Column(name="mother_name")
 	private String motherName;
-	@Column
+	
+	@Column(name="nu_prontuario")
 	private Long nuProntuario;
-	@Column
+	
+	@Column(name="nu_cart_sus")
 	private String nuCartSus;
-	@Column
+	
+	@Column(name="file_local")
 	private String fileLocal;
+	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private Address address;
+	
+	@Column(name="date_of_birth")
 	@DateTimeFormat
 	private Calendar dateOfBirth;
 	
@@ -45,9 +52,10 @@ public class User
 	@JoinTable(name = "user_screeningdate", joinColumns = {@JoinColumn(name="user_id")}, inverseJoinColumns = {@JoinColumn(name="screeningdate_id")})
 	private List<ScreeningDate> screeningDate = new ArrayList<>();
 	
-	@Column
+	@Column(name="drug_type")
 	private String drugType;
-	@Column
+	
+	@Column(name="phone")
 	private String phone;
 	
 	@Transient
