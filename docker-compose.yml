@@ -1,0 +1,16 @@
+version: '3'
+service:
+  mysql:
+    build:
+      dockerfile: ./bd.dockerfile
+      context: .
+  image: capsrnb/mysql
+  container_name: mysql
+  port: 
+    - 3306:3306
+  networks: 
+    - capsrnrb-network
+
+networks:
+  capsrnrb-network:
+    driver: bridge
