@@ -1,15 +1,15 @@
 version: '3'
-service:
+services:
   mysql:
     build:
       dockerfile: ./bd.dockerfile
       context: .
-  image: capsrnb/mysql
-  container_name: mysql
-  port: 
-    - 3306:3306
-  networks: 
-    - capsrnrb-network
+    image: capsrnrb/mysql
+    container_name: mysql
+    ports: 
+      - 3306:3306
+    networks: 
+      - capsrnrb-network
 
 networks:
   capsrnrb-network:
