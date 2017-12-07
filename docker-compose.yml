@@ -11,6 +11,19 @@ services:
     networks: 
       - capsrnrb-network
 
+  tomcat:
+    build: 
+      dockerfile: ./tomcat.dockerfile
+      context: .
+    image: capsrnrb/tomcat
+    container_name: tomcat8
+    ports: 
+      - 8080:8080
+    networks: 
+      - capsrnrb-network
+    depends_on: 
+      - mysql  
+
 networks:
   capsrnrb-network:
     driver: bridge
