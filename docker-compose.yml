@@ -5,6 +5,8 @@ services:
       dockerfile: ./bd.dockerfile
       context: .
     image: capsrnrb/mysql
+    volumes: 
+      - /home/andrelucastic/docker_test/mysql:/var/lib/mysql
     container_name: mysql
     ports: 
       - 3306:3306
@@ -23,6 +25,21 @@ services:
       - capsrnrb-network
     depends_on: 
       - mysql  
+
+  jenkins:
+    build: 
+      dockerfile: ./jenkins.dockerfile
+      context: .
+    image: capsrnrb/jenkins
+    volumes:
+      - /home/andrelucastic/docker_test/jenkins:/var/jenkins_home
+    container_name: jenkins
+    ports: 
+      - 8181:8080
+      - 50000:50000
+    networks: 
+      - capsrnrb-network
+     
 
 networks:
   capsrnrb-network:
